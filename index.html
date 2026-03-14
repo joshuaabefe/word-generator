@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TextGen — Word, Sentence &amp; Paragraph Generator</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Instantly generate random words, sentences, and paragraphs for mockups, prototypes, and creative projects. Free, fast, and works offline." />
+  <meta name="keywords" content="text generator, random word generator, random sentence generator, paragraph generator, lorem ipsum alternative, placeholder text" />
+  <meta name="author" content="Joshua Abefe" />
+
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:title" content="TextGen — Word, Sentence &amp; Paragraph Generator" />
+  <meta property="og:description" content="Instantly generate random words, sentences, and paragraphs for mockups, prototypes, and creative projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://joshuaabefe.github.io/word-generator/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="TextGen — Word, Sentence &amp; Paragraph Generator" />
+  <meta name="twitter:description" content="Instantly generate random words, sentences, and paragraphs. Free tool by Joshua Abefe." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Live clock -->
+      <div class="clock-block">
+        <span class="clock-icon">◷</span>
+        <span id="datetime-display">Loading...</span>
+      </div>
+
+      <!-- Brand -->
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">TextGen</span>
+      </div>
+
+      <!-- Theme toggle -->
+      <div class="theme-toggle-wrap">
+        <span class="toggle-label" id="toggle-label">Light</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+          <span class="toggle-thumb"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <p class="hero-eyebrow">Instant Text Generation</p>
+    <h1 class="hero-title">
+      Words.<br />Sentences.<br />
+      <span class="hero-accent">Paragraphs.</span>
+    </h1>
+    <p class="hero-sub">Generate random text content for mockups, prototypes, and creative projects.</p>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- Generator Controls -->
+    <section class="controls-section">
+      <div class="controls-card">
+        <p class="controls-label">Choose what to generate</p>
+        <div class="btn-group" role="group" aria-label="Generator options">
+          <button class="gen-btn active" data-type="word" id="btn-word">
+            <span class="btn-icon">W</span>
+            <span class="btn-text">Word</span>
+          </button>
+          <button class="gen-btn" data-type="sentence" id="btn-sentence">
+            <span class="btn-icon">S</span>
+            <span class="btn-text">Sentence</span>
+          </button>
+          <button class="gen-btn" data-type="paragraph" id="btn-paragraph">
+            <span class="btn-icon">P</span>
+            <span class="btn-text">Paragraph</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Output Card -->
+    <section class="output-section">
+      <div class="output-card" id="output-card">
+        <!-- Card header bar -->
+        <div class="output-header">
+          <div class="output-type-badge" id="output-type-badge">WORD</div>
+          <div class="output-actions">
+            <button class="action-btn" id="copy-btn" title="Copy to clipboard" aria-label="Copy text">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy</span>
+            </button>
+            <button class="action-btn generate-again-btn" id="generate-again-btn" aria-label="Generate again">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              <span>Again</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Text output -->
+        <div class="output-body">
+          <p class="output-text placeholder" id="output-text">
+            Click a button above to generate your first word!
+          </p>
+        </div>
+
+        <!-- Card footer with copy toast -->
+        <div class="output-footer">
+          <span class="copy-toast" id="copy-toast">✓ Copied to clipboard!</span>
+          <span class="char-count" id="char-count"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats row -->
+    <section class="stats-section">
+      <div class="stat-pill">
+        <span class="stat-num" id="stat-generated">0</span>
+        <span class="stat-desc">Generated</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num" id="stat-words">200+</span>
+        <span class="stat-desc">Word Pool</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num" id="stat-sentences">40+</span>
+        <span class="stat-desc">Sentence Templates</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">Copyright &copy; 2026. All Rights Reserved.</p>
+      <p class="footer-dev">
+        Developed by
+        <a href="https://joshuaabefe.github.io/" target="_blank" rel="noopener noreferrer" class="footer-link">
+          Joshua Abefe
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

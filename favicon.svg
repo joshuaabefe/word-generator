@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background rounded square -->
+  <rect width="32" height="32" rx="8" fill="#003D5B"/>
+  <!-- Letter T (for TextGen) in golden -->
+  <rect x="7" y="8" width="18" height="3.5" rx="1.5" fill="#EDAE49"/>
+  <rect x="13.25" y="11.5" width="5.5" height="13" rx="1.5" fill="#EDAE49"/>
+  <!-- Small crimson dot accent -->
+  <circle cx="24" cy="24" r="3.5" fill="#D1495B"/>
+</svg>
